@@ -360,6 +360,220 @@ section[id] {
   to { opacity: 1; transform: none; }
 }
 
+/* Sections that follow another section closely (contact, and most About sections) */
+.sec.tight {
+  padding-top: 40px;
+}
+
+/*
+  Contact block with a rotating colour border.
+  The border is the 2px gap between .contact-wrap (a conic gradient) and .contact.
+  @property lets the browser animate the gradient's angle smoothly.
+*/
+@property --ang {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.contact-wrap {
+  position: relative;
+  padding: 2px;
+  border-radius: 34px;
+  background: conic-gradient(from var(--ang), var(--lapis), var(--saffron), var(--mint), var(--lapis));
+  animation: spin 8s linear infinite;
+}
+
+@keyframes spin {
+  to { --ang: 360deg; }
+}
+
+/* The block uses the text colour as its background, so it's dark in light mode and light in dark mode. */
+.contact {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 56px;
+  align-items: center;
+  padding: 76px 72px;
+  overflow: hidden;
+  border-radius: 32px;
+  background: var(--ink);
+  color: var(--bg);
+}
+
+.contact::before {
+  content: "";
+  position: absolute;
+  top: -200px;
+  left: -120px;
+  width: 480px;
+  height: 480px;
+  border-radius: 50%;
+  background: var(--glow);
+  filter: blur(70px);
+}
+
+.contact > * {
+  position: relative;
+}
+
+.contact h2 {
+  font-size: clamp(40px, 4.8vw, 60px);
+  line-height: 1;
+  letter-spacing: -0.045em;
+  font-weight: 900;
+}
+
+.contact p {
+  max-width: 26em;
+  margin-top: 20px;
+  font-size: 18px;
+  opacity: .72;
+}
+
+.c-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.c-link {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 20px;
+  border-radius: 18px;
+  border: 1px solid color-mix(in srgb, var(--bg) 18%, transparent);
+  transition: transform .25s, background .25s;
+}
+
+.c-link:hover {
+  transform: translateX(6px);
+  background: color-mix(in srgb, var(--bg) 8%, transparent);
+}
+
+.c-link .ci {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--bg) 10%, transparent);
+}
+
+.c-link .ci svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* The label column can shrink (min-width: 0), so a long address wraps instead of pushing the box wider. */
+.c-link > span:not(.ci) {
+  display: block;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.c-link b {
+  display: block;
+  font-size: 17px;
+}
+
+.c-link > span:not(.ci) > span {
+  display: block;
+  margin-top: 2px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.45;
+  opacity: .65;
+  overflow-wrap: anywhere;
+}
+
+.c-link .go {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  margin-left: auto;
+  transition: transform .25s;
+}
+
+.c-link:hover .go {
+  transform: translateX(4px);
+}
+
+.c-link.main {
+  border-color: var(--bg);
+  background: var(--bg);
+  color: var(--ink);
+}
+
+.copy-btn {
+  align-self: flex-start;
+  min-height: 44px;
+  padding: 6px 4px;
+  border: 0;
+  background: none;
+  color: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  opacity: .8;
+}
+
+.copy-btn:hover {
+  opacity: 1;
+}
+
+/* Footer with the big outlined name that fills with colour on hover */
+.foot {
+  position: relative;
+  z-index: 1;
+  padding: 40px 0 34px;
+  overflow: hidden;
+}
+
+.bigname {
+  margin: 30px 0 26px;
+  font-size: 18vw;
+  line-height: .82;
+  font-weight: 900;
+  letter-spacing: -0.06em;
+  text-align: center;
+  color: transparent;
+  -webkit-text-stroke: 2px var(--line);
+  background: linear-gradient(90deg, var(--lapis), var(--saffron));
+  -webkit-background-clip: text;
+  background-clip: text;
+  background-size: 0% 100%;
+  background-repeat: no-repeat;
+  transition: background-size 1.2s cubic-bezier(.2, .9, .2, 1);
+}
+
+.bigname:hover {
+  background-size: 100% 100%;
+}
+
+.foot-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.foot-row nav {
+  display: flex;
+  gap: 24px;
+}
+
+.foot-row a:hover {
+  color: var(--ink);
+}
+
 /* Stops the page behind the open menu from scrolling. */
 .menu-open {
   overflow: hidden;
@@ -379,6 +593,12 @@ section[id] {
     flex-direction: column;
     align-items: flex-start;
     gap: 14px;
+  }
+
+  .contact {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 40px;
+    padding: 56px 48px;
   }
 }
 
@@ -417,5 +637,14 @@ section[id] {
 
   .sec-head {
     margin-bottom: 36px;
+  }
+
+  .contact {
+    padding: 44px 26px;
+  }
+
+  .foot-row {
+    flex-direction: column;
+    gap: 12px;
   }
 }
