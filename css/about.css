@@ -1,9 +1,11 @@
 /* About page only: about hero, timeline, beyond code and now cards. */
 
 /* About hero: photo card on the left, story on the right */
+/* A size container, so the labels below can measure the page width (cqw) without the scrollbar. */
 .about-hero {
   position: relative;
   padding: 70px 0 100px;
+  container-type: inline-size;
 }
 
 .about-in {
@@ -85,9 +87,16 @@
   animation: bobLift 5s ease-in-out infinite, fadeUp .8s .5s both;
 }
 
+/*
+  This label hangs 40px out to the left of the photo, but never further than the page's
+  side margin minus 8px, so it always stays on screen. The margin is half of
+  (page width - content width); 100cqw is the page width measured without the scrollbar.
+  Browsers without container units use the safe -16px instead.
+*/
 .sticker.s2 {
   bottom: 70px;
-  left: -40px;
+  left: -16px;
+  left: max(-40px, calc((min(1200px, 100cqw - 48px) - 100cqw) / 2 + 8px));
   animation: bobLift 6s 1s ease-in-out infinite, fadeUp .8s .7s both;
 }
 
@@ -435,13 +444,6 @@
 
 .now-card:hover .bar {
   transform: scaleX(1);
-}
-
-/* Below about 1250px the page margin is narrower than this label's overhang, so pull it in. */
-@media (max-width: 1250px) {
-  .sticker.s2 {
-    left: -16px;
-  }
 }
 
 /* Tablet (not in the design): the photo moves above the story, at its desktop size. */
