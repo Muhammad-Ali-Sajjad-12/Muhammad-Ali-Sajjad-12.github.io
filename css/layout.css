@@ -342,11 +342,6 @@
   padding: 120px 0;
 }
 
-/* Leaves room for the sticky navbar when a link jumps to a section. */
-section[id] {
-  scroll-margin-top: 90px;
-}
-
 .sec-head {
   display: flex;
   justify-content: space-between;

@@ -9,6 +9,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* Keeps anything scrolled to (anchor links, keyboard focus) clear of the sticky navbar. */
+  scroll-padding-top: 96px;
   -webkit-text-size-adjust: 100%;
   /* Clip anything that pokes out sideways (orbs, tilted windows) so phones never scroll left and right. */
   overflow-x: clip;
