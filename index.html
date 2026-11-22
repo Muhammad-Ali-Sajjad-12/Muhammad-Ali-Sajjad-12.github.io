@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Muhammad Ali Sajjad | Full-stack developer</title>
+  <meta name="theme-color" content="#F5F6FB" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0A0F22" media="(prefers-color-scheme: dark)">
+
+  <!-- Runs before any CSS so the page is drawn in the right theme from the first frame. -->
+  <script>
+    (function () {
+      var theme = null;
+      try { theme = localStorage.getItem('theme'); } catch (error) {}
+      if (theme !== 'light' && theme !== 'dark') {
+        theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/home.css">
+
+  <script src="js/theme.js" defer></script>
+  <script src="js/nav.js" defer></script>
+  <script src="js/hero.js" defer></script>
+  <script src="js/contact.js" defer></script>
+  <script src="js/reveal.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="spot" aria-hidden="true"></div>
+
+  <header class="nav">
+    <div class="nav-in">
+      <div class="nav-right">
+        <button class="toggle" type="button" aria-label="Switch between light and dark theme">
+          <span class="knob"></span>
+          <span class="ico sun"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg></span>
+          <span class="ico moon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"></path></svg></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="hero" id="top"></section>
+    <section class="sec" id="work"></section>
+    <section class="sec" id="stack"></section>
+    <section class="sec" id="process"></section>
+    <section class="sec" id="contact"></section>
+  </main>
+
+  <footer class="foot"></footer>
+</body>
+</html>

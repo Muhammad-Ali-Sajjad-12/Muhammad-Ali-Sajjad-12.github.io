@@ -1,0 +1,54 @@
+/*
+  Colour and font tokens.
+  Light is the default. A tiny script in each page's <head> sets
+  <html data-theme="dark"> before this file loads, so the dark values win
+  straight away and the page never flashes the wrong colours.
+*/
+
+:root {
+  --bg: #F5F6FB;
+  --bg2: #FFFFFF;
+  --bg3: #ECEEF7;
+  --ink: #10152B;
+  --muted: #545C7A;
+  --line: #DFE3EF;
+  --lapis: #3550F0;
+  --lapis-ink: #FFFFFF;
+  --accent: #3550F0;
+  --saffron: #F0A21A;
+  --mint: #10A46A;
+  --glow: rgba(53, 80, 240, .16);
+  --glow2: rgba(240, 162, 26, .16);
+  --dot: rgba(16, 21, 43, .10);
+  --shadow: 0 1px 0 rgba(16, 21, 43, .05), 0 24px 50px -24px rgba(16, 21, 43, .35);
+  --term-bg: #10152B;
+  --term-ink: #DCE2FF;
+
+  --font-sans: "Schibsted Grotesk", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* Tells the browser to draw scrollbars and form controls to match. */
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  --bg: #0A0F22;
+  --bg2: #121A36;
+  --bg3: #19234A;
+  --ink: #EEF1FB;
+  --muted: #A4ADD0;
+  --line: #253058;
+  --lapis: #6F86FF;
+  --lapis-ink: #0A0F22;
+  --accent: #FFB648;
+  --saffron: #FFB648;
+  --mint: #3EE0A0;
+  --glow: rgba(111, 134, 255, .22);
+  --glow2: rgba(255, 182, 72, .14);
+  --dot: rgba(238, 241, 251, .09);
+  --shadow: 0 1px 0 rgba(0, 0, 0, .4), 0 30px 60px -24px rgba(0, 0, 0, .8);
+  --term-bg: #060A18;
+  --term-ink: #DCE2FF;
+
+  color-scheme: dark;
+}
