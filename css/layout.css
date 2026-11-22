@@ -25,6 +25,72 @@
   box-shadow: 0 10px 30px -20px rgba(0, 0, 0, .35);
 }
 
+/* Logo: the Rubik's cube wobbles every 7 seconds and spins when hovered */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 20px;
+  letter-spacing: -0.02em;
+}
+
+.brand .mark {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 37px;
+  transition: transform .4s cubic-bezier(.3, 1.6, .5, 1);
+  animation: cubeIdle 7s ease-in-out infinite;
+}
+
+.brand:hover .mark {
+  transform: rotate(-12deg) scale(1.08);
+  animation: cubeSpin .9s cubic-bezier(.3, 1.2, .4, 1);
+}
+
+.brand svg.cube {
+  display: block;
+  width: 36px;
+  height: 37px;
+  stroke: none;
+  filter: drop-shadow(0 3px 6px rgba(16, 21, 43, .25));
+}
+
+@keyframes cubeSpin {
+  from { transform: rotate(0) scale(1); }
+  50% { transform: rotate(200deg) scale(1.12); }
+  to { transform: rotate(360deg) scale(1); }
+}
+
+@keyframes cubeIdle {
+  0%, 84%, 100% { transform: rotate(0); }
+  88% { transform: rotate(-14deg); }
+  93% { transform: rotate(9deg); }
+  97% { transform: rotate(-3deg); }
+}
+
+/* Page links */
+.links {
+  display: flex;
+  gap: 6px;
+}
+
+.links a {
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--muted);
+  transition: color .2s, background .2s;
+}
+
+.links a:hover,
+.links a.on {
+  color: var(--ink);
+  background: var(--bg3);
+}
+
 .nav-right {
   display: flex;
   align-items: center;
@@ -83,6 +149,23 @@
   color: var(--saffron);
 }
 
+/* Menu button: only shown on phones */
+.menu-btn {
+  display: none;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--bg3);
+}
+
+.menu-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
 /*
   Theme change, version 1: the View Transitions API.
   theme.js grows the new page from a circle at the switch, so the browser's
@@ -126,8 +209,91 @@
   100% { clip-path: circle(150% at var(--fx-x) var(--fx-y)); opacity: 0; }
 }
 
+/*
+  Mobile menu sheet: a blurred backdrop with a panel that drops in from the top.
+  It sits outside the header on purpose: the header's backdrop-filter would
+  otherwise trap this fixed layer inside the header's box.
+*/
+.sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  background: color-mix(in srgb, var(--bg) 55%, transparent);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  animation: fadeIn .25s both;
+}
+
+.sheet[hidden] {
+  display: none;
+}
+
+.sheet-panel {
+  margin: 10px;
+  padding: 12px 18px 22px;
+  border-radius: 22px;
+  border: 1px solid var(--line);
+  background: var(--bg2);
+  box-shadow: var(--shadow);
+  animation: dropIn .45s cubic-bezier(.2, .9, .2, 1) both;
+}
+
+.sheet-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 46px;
+  margin-bottom: 6px;
+}
+
+.sheet-top .menu-btn {
+  display: grid;
+}
+
+.sheet-panel .item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+}
+
+.sheet-panel .item svg {
+  width: 22px;
+  height: 22px;
+  color: var(--muted);
+}
+
+.sheet-panel .item.on {
+  color: var(--lapis);
+}
+
+/* Stops the page behind the open menu from scrolling. */
+.menu-open {
+  overflow: hidden;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+}
+
+@keyframes dropIn {
+  from { opacity: 0; transform: translateY(-24px) scale(.97); }
+}
+
 /* Phone */
 @media (max-width: 760px) {
+  .links {
+    display: none;
+  }
+
+  .menu-btn {
+    display: grid;
+  }
+
   .nav {
     top: 10px;
     margin-top: 10px;
