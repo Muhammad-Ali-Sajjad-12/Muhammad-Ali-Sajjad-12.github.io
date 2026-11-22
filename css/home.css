@@ -886,6 +886,199 @@
   color: var(--muted);
 }
 
+/* Full-stack layers */
+.stackviz {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 28px;
+}
+
+/* A dashed vertical pipe with two glowing packets travelling along it in turn. */
+.pipe {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.pipe::before {
+  content: "";
+  position: absolute;
+  top: 30px;
+  bottom: 30px;
+  width: 3px;
+  border-radius: 3px;
+  background: repeating-linear-gradient(var(--line) 0 10px, transparent 10px 18px);
+}
+
+.packet {
+  position: absolute;
+  top: 30px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--lapis);
+  box-shadow: 0 0 0 6px var(--glow), 0 0 24px var(--lapis);
+  animation: travel 5s cubic-bezier(.6, 0, .4, 1) infinite;
+}
+
+.packet.back {
+  background: var(--saffron);
+  box-shadow: 0 0 0 6px var(--glow2), 0 0 24px var(--saffron);
+  animation-name: travelBack;
+  animation-delay: 2.5s;
+}
+
+@keyframes travel {
+  0% { top: 30px; opacity: 0; }
+  8% { opacity: 1; }
+  45% { top: calc(100% - 46px); opacity: 1; }
+  50% { top: calc(100% - 46px); opacity: 0; }
+  100% { top: calc(100% - 46px); opacity: 0; }
+}
+
+@keyframes travelBack {
+  0% { top: calc(100% - 46px); opacity: 0; }
+  8% { opacity: 1; }
+  45% { top: 30px; opacity: 1; }
+  50% { top: 30px; opacity: 0; }
+  100% { top: 30px; opacity: 0; }
+}
+
+.layers {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.layer {
+  display: grid;
+  grid-template-columns: 64px 220px 1fr;
+  gap: 24px;
+  align-items: center;
+  padding: 26px 28px;
+  border-radius: 22px;
+  border: 1px solid var(--line);
+  background: var(--bg2);
+  transition: transform .3s, border-color .3s, box-shadow .3s;
+}
+
+.layer:hover {
+  transform: translateX(8px);
+  border-color: var(--lapis);
+  box-shadow: var(--shadow);
+}
+
+.layer .ic {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  background: var(--bg3);
+  color: var(--lapis);
+}
+
+.layer .ic svg {
+  width: 30px;
+  height: 30px;
+}
+
+.layer h3 {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.layer p {
+  font-size: 15px;
+  color: var(--muted);
+}
+
+.layer .chips {
+  margin: 0;
+}
+
+/* How I work: four steps joined by a line that fills from blue to orange */
+.steps {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.track-line {
+  position: absolute;
+  top: 28px;
+  left: 28px;
+  right: 28px;
+  height: 3px;
+  overflow: hidden;
+  border-radius: 3px;
+  background: var(--line);
+}
+
+.track-line span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--lapis), var(--saffron));
+  transform-origin: left;
+  animation: fillLine 3.5s ease-in-out infinite alternate;
+}
+
+/* Where supported, the line fills as the steps scroll into view instead. */
+@supports (animation-timeline: view()) {
+  .track-line span {
+    animation: fillLine linear both;
+    animation-timeline: view();
+    animation-range: entry 20% cover 55%;
+  }
+}
+
+@keyframes fillLine {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+.step {
+  position: relative;
+}
+
+.step .num {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  margin-bottom: 22px;
+  border-radius: 50%;
+  border: 3px solid var(--lapis);
+  background: var(--bg);
+  color: var(--lapis);
+  font-size: 20px;
+  font-weight: 900;
+  transition: transform .3s, background .3s, color .3s;
+}
+
+.step:hover .num {
+  transform: scale(1.12);
+  background: var(--lapis);
+  color: var(--lapis-ink);
+}
+
+.step h3 {
+  margin-bottom: 8px;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.step p {
+  font-size: 16px;
+  color: var(--muted);
+}
+
 /*
   Tablet (not in the design): the two hero columns get too narrow below about 960px,
   so the stage moves under the text, centred and no wider than it is on desktop.
@@ -913,6 +1106,26 @@
 
   .proj.flip .shot-wrap {
     order: 0;
+  }
+
+  /* Layers: icon and title side by side, tools on their own row underneath. */
+  .layer {
+    grid-template-columns: 64px minmax(0, 1fr);
+    gap: 18px 24px;
+  }
+
+  .layer .chips {
+    grid-column: 1 / -1;
+  }
+
+  /* Steps: two by two. The joining line only makes sense in a single row, so it's hidden. */
+  .steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 40px 24px;
+  }
+
+  .track-line {
+    display: none;
   }
 }
 
@@ -995,6 +1208,22 @@
 
   .info h3 {
     font-size: 32px;
+  }
+
+  .stackviz {
+    grid-template-columns: 36px 1fr;
+    gap: 14px;
+  }
+
+  .layer {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+    padding: 20px;
+  }
+
+  .steps {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
   }
 }
 
