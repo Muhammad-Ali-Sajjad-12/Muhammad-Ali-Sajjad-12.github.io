@@ -151,7 +151,121 @@
         </div>
       </div>
     </section>
-    <section class="sec" id="work"></section>
+    <!-- Tools strip: the list appears twice so the loop is seamless; screen readers only get the first copy. -->
+    <section class="marquee" aria-label="Tools I use">
+      <div class="track">
+        <ul class="group">
+          <li class="item"><i></i>Python</li>
+          <li class="item"><i></i>Django</li>
+          <li class="item"><i></i>PostgreSQL</li>
+          <li class="item"><i></i>Tailwind CSS</li>
+          <li class="item"><i></i>HTMX</li>
+          <li class="item"><i></i>JavaScript</li>
+          <li class="item"><i></i>HTML &amp; CSS</li>
+          <li class="item"><i></i>Git &amp; GitHub</li>
+          <li class="item"><i></i>Railway</li>
+          <li class="item learning"><i></i>React<em>learning</em></li>
+        </ul>
+        <ul class="group" aria-hidden="true">
+          <li class="item"><i></i>Python</li>
+          <li class="item"><i></i>Django</li>
+          <li class="item"><i></i>PostgreSQL</li>
+          <li class="item"><i></i>Tailwind CSS</li>
+          <li class="item"><i></i>HTMX</li>
+          <li class="item"><i></i>JavaScript</li>
+          <li class="item"><i></i>HTML &amp; CSS</li>
+          <li class="item"><i></i>Git &amp; GitHub</li>
+          <li class="item"><i></i>Railway</li>
+          <li class="item learning"><i></i>React<em>learning</em></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="sec" id="work">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <h2>Live projects</h2>
+          <p>Both businesses used to run on WhatsApp messages alone. Now each has a website that sends customers to the right chat with one tap.</p>
+        </div>
+
+        <article class="proj reveal">
+          <div class="shot-wrap">
+            <a class="shot" href="https://almahdiquranacademy.com" target="_blank" rel="noopener" aria-label="Open Al Mahdi Quran Academy in a new tab">
+              <div class="win">
+                <div class="win-bar"><i></i><i></i><i></i><span class="url"><span class="ping"></span>almahdiquranacademy.com</span></div>
+                <div class="viewport"><div class="inner">
+                  <div class="ma">
+                    <div class="ma-top"><span>Al Mahdi Quran Academy</span><span>Home   Courses</span></div>
+                    <h4>Learn the Quran online with trusted teachers</h4>
+                    <p>Classes for children and adults, from Qaida to Tajweed.</p>
+                    <span class="ma-btn">Book a free trial</span>
+                    <div class="ma-cards">
+                      <div class="ma-card"><div class="art"></div>Quran<small>Qaida, Tajweed, Translation</small></div>
+                      <div class="ma-card"><div class="art"></div>Hadees<small>Guided study</small></div>
+                      <div class="ma-card"><div class="art"></div>Fiqhi Ahkaam<small>Dua and Namaaz practice</small></div>
+                    </div>
+                    <div class="ma-band"><b>Book in three steps</b><span>Pick a course, choose a male or female teacher, then chat on WhatsApp.</span></div>
+                    <div class="ma-steps"><div>1. Choose a course</div><div>2. Free trial or paid</div><div>3. Open WhatsApp</div></div>
+                  </div>
+                </div></div>
+              </div>
+            </a>
+            <span class="hover-hint" aria-hidden="true">Hover to scroll the site</span>
+          </div>
+          <div class="info">
+            <span class="pill"><span class="ping"></span>Live since November 2026</span>
+            <h3>Al Mahdi Quran Academy</h3>
+            <p class="story">A website for an online Quran centre with 20 years of teaching. Students pick a course, choose a free trial or paid class and a male or female teacher, then land in the teacher's WhatsApp chat.</p>
+            <div class="did">
+              <div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><circle cx="11" cy="11" r="2"></circle></svg><p><b>Design</b><span>Pages and booking flow planned with the teacher</span></p></div>
+              <div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"></path></svg><p><b>Build</b><span>Course pages and booking in Django</span></p></div>
+              <div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 14.9A7 7 0 1 1 15.7 8h1.8a4.5 4.5 0 0 1 2.5 8.2"></path><path d="M12 12v9M8 16l4-4 4 4"></path></svg><p><b>Launch</b><span>Live on Railway with its own domain</span></p></div>
+              <div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg><p><b>Look after</b><span>Content updates and search visibility</span></p></div>
+            </div>
+            <div class="chips"><span class="chip">Django</span><span class="chip">PostgreSQL</span><span class="chip">Tailwind CSS</span><span class="chip">HTMX</span><span class="chip">Railway</span></div>
+            <a class="btn primary" href="https://almahdiquranacademy.com" target="_blank" rel="noopener">Visit the site <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></a>
+          </div>
+        </article>
+
+        <article class="proj flip reveal">
+          <!-- The domain isn't connected yet, so this preview is not a link. It still tilts and scrolls on hover. -->
+          <div class="shot-wrap" aria-hidden="true">
+            <div class="shot">
+              <div class="win">
+                <div class="win-bar"><i></i><i></i><i></i><span class="url"><span class="ping"></span>lailascollection.com</span></div>
+                <div class="viewport"><div class="inner">
+                  <div class="lc">
+                    <div class="lc-top"><span>Laila's Collection</span><span>Shop   About</span></div>
+                    <div class="lc-hero"><div><h4>Hand-finished suits, made with care</h4><p>Unstitched designs, ordered on WhatsApp.</p><span class="lc-btn">Order on WhatsApp</span></div><div class="lc-art"></div></div>
+                    <div class="lc-cats"><div>Hand-painted</div><div>Block print</div><div>Embroidered</div></div>
+                    <div class="lc-grid">
+                      <div class="lc-item"><div class="art"></div>Gulnar<span>Hand-painted</span></div>
+                      <div class="lc-item"><div class="art"></div>Mehr<span>Block print</span></div>
+                      <div class="lc-item"><div class="art"></div>Zari<span>Embroidered</span></div>
+                    </div>
+                  </div>
+                </div></div>
+              </div>
+            </div>
+            <span class="hover-hint">Hover to scroll the site</span>
+          </div>
+          <div class="info">
+            <span class="pill"><span class="ping"></span>Live since November 2026</span>
+            <h3>Laila's Collection</h3>
+            <p class="story">An online store for a clothing brand. Customers browse hand-painted, block-print and embroidered suits, then send a ready-made order message on WhatsApp with one tap.</p>
+            <div class="did">
+              <div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><circle cx="11" cy="11" r="2"></circle></svg><p><b>Design</b><span>Brand colours, layout and product pages</span></p></div>
+              <div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"></path></svg><p><b>Build</b><span>Product catalogue and WhatsApp ordering</span></p></div>
+              <div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 14.9A7 7 0 1 1 15.7 8h1.8a4.5 4.5 0 0 1 2.5 8.2"></path><path d="M12 12v9M8 16l4-4 4 4"></path></svg><p><b>Launch</b><span>Deployed on Railway</span></p></div>
+              <div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg><p><b>Look after</b><span>I add new designs and handle orders</span></p></div>
+            </div>
+            <div class="chips"><span class="chip">Django</span><span class="chip">PostgreSQL</span><span class="chip">Tailwind CSS</span><span class="chip">HTMX</span><span class="chip">Railway</span></div>
+            <!-- Swap this for a real link once lailascollection.com is live. -->
+            <span class="btn ghost" aria-disabled="true">Domain coming soon</span>
+          </div>
+        </article>
+      </div>
+    </section>
     <section class="sec" id="stack"></section>
     <section class="sec" id="process"></section>
     <section class="sec" id="contact"></section>
