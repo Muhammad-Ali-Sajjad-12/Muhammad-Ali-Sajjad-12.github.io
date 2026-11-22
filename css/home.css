@@ -1,1 +1,675 @@
 /* Home page only: hero, tools strip, projects, full-stack layers and steps. */
+
+/* Hero */
+.hero {
+  position: relative;
+  padding: 70px 0 90px;
+}
+
+.hero-in {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1.02fr;
+  gap: 40px;
+  align-items: center;
+}
+
+/* Each headline line slides up from behind an invisible edge (the overflow: hidden line box). */
+/* 76px (the design size) on screens from about 1290px wide, shrinking with the screen below that
+   so the headline and the stage still fit side by side on laptops. */
+.h1 {
+  margin: 24px 0 26px;
+  font-size: clamp(46px, 5.9vw, 76px);
+  line-height: .98;
+  letter-spacing: -0.045em;
+  font-weight: 900;
+}
+
+.h1 .line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 6px;
+}
+
+.h1 .line > .in {
+  display: inline-block;
+  animation: rise .9s cubic-bezier(.2, .9, .2, 1) both;
+}
+
+.h1 .l2 > .in {
+  animation-delay: .12s;
+}
+
+/* Rotating word: all four words share one grid cell; hero.js marks the visible one "on". */
+.rot {
+  display: inline-grid;
+  vertical-align: bottom;
+  color: var(--accent);
+}
+
+.rot .w {
+  grid-area: 1 / 1;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(70%);
+  transition: transform .6s cubic-bezier(.2, .9, .2, 1), opacity .45s;
+}
+
+.rot .w.on {
+  opacity: 1;
+  transform: none;
+}
+
+.rot .w.out {
+  opacity: 0;
+  transform: translateY(-70%);
+}
+
+.lead {
+  max-width: 32em;
+  font-size: 19px;
+  color: var(--muted);
+  animation: fadeUp .8s .3s both;
+}
+
+.lead strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.ctas {
+  display: flex;
+  gap: 12px;
+  margin-top: 34px;
+  animation: fadeUp .8s .42s both;
+}
+
+/* Each fact stays on one line; on narrow screens whole facts move to the next row instead. */
+.facts-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 22px;
+  margin-top: 34px;
+  animation: fadeUp .8s .54s both;
+}
+
+.fact {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.fact b {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+/*
+  Hero stage: two site windows, a terminal and a badge.
+  Each piece has three wrappers so three motions can stack without fighting:
+  .par (mouse parallax, set by hero.js) > .enter-* (fly-in on load) > .float* (gentle bobbing).
+*/
+.stage {
+  position: relative;
+  height: 560px;
+}
+
+.par {
+  position: absolute;
+  transition: transform .25s ease-out;
+}
+
+.par.pa {
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 440px;
+}
+
+.par.pb {
+  top: 170px;
+  right: -10px;
+  z-index: 2;
+  width: 440px;
+}
+
+.par.pt {
+  bottom: 0;
+  left: 30px;
+  z-index: 3;
+  width: 330px;
+}
+
+.enter-a {
+  animation: flyA 1.1s .2s cubic-bezier(.2, .9, .2, 1) both;
+}
+
+.enter-b {
+  animation: flyB 1.1s .38s cubic-bezier(.2, .9, .2, 1) both;
+}
+
+.enter-t {
+  animation: flyT 1s .6s cubic-bezier(.2, .9, .2, 1) both;
+}
+
+.float1 {
+  animation: bob 6s ease-in-out infinite;
+}
+
+.float2 {
+  animation: bob 7s 1s ease-in-out infinite;
+}
+
+.float3 {
+  animation: bob 5.5s .5s ease-in-out infinite;
+}
+
+/* Browser window frame (also used by the project previews) */
+.win {
+  --rot: 0deg;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: var(--bg2);
+  box-shadow: var(--shadow);
+}
+
+.wa {
+  --rot: -4deg;
+}
+
+.wb {
+  --rot: 3deg;
+}
+
+.win-bar {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg2);
+}
+
+.win-bar i {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.win-bar i:nth-child(1) {
+  background: #FF6B5E;
+}
+
+.win-bar i:nth-child(2) {
+  background: #FFBE3D;
+}
+
+.win-bar i:nth-child(3) {
+  background: #2BCB6B;
+}
+
+.url {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 8px;
+  margin-left: 10px;
+  padding: 5px 10px;
+  overflow: hidden;
+  border-radius: 8px;
+  background: var(--bg3);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.url .ping {
+  width: 7px;
+  height: 7px;
+}
+
+.viewport {
+  position: relative;
+  height: 250px;
+  overflow: hidden;
+}
+
+/* The hero windows scroll through their site on their own, pausing at the top and halfway. */
+.autoscroll {
+  animation: browse 11s ease-in-out infinite;
+}
+
+.autoscroll.slow {
+  animation-duration: 13s;
+  animation-delay: 2s;
+}
+
+@keyframes browse {
+  0%, 18% { transform: translateY(0); }
+  45%, 62% { transform: translateY(-46%); }
+  90%, 100% { transform: translateY(0); }
+}
+
+/* Deploy terminal */
+.term {
+  overflow: hidden;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, .08);
+  background: var(--term-bg);
+  color: var(--term-ink);
+  box-shadow: var(--shadow);
+}
+
+.term-bar {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, .08);
+  font-size: 11.5px;
+  color: #8790B8;
+}
+
+.term-bar i {
+  display: block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #2B3358;
+}
+
+.term-bar span {
+  margin-left: 8px;
+}
+
+.term-body {
+  min-height: 176px;
+  padding: 14px 16px 16px;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  line-height: 1.75;
+}
+
+.tl {
+  display: block;
+  white-space: pre;
+}
+
+.tl.cmd {
+  color: #FFFFFF;
+}
+
+.tl.cmd::before {
+  content: "$ ";
+  color: #6F86FF;
+}
+
+.tl.ok {
+  color: #9AE6C2;
+}
+
+.tl.live {
+  color: #FFB648;
+  font-weight: 500;
+}
+
+.caret {
+  display: inline-block;
+  width: 8px;
+  height: 15px;
+  margin-left: 2px;
+  vertical-align: -2px;
+  background: #FFB648;
+  animation: blink 1s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.badge-live {
+  position: absolute;
+  right: 30px;
+  bottom: 40px;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--bg2);
+  box-shadow: var(--shadow);
+  font-weight: 700;
+  font-size: 14px;
+  animation: flyT .8s .9s cubic-bezier(.2, .9, .2, 1) both;
+}
+
+/* Mini site art: CSS drawings of the two client sites, in their own brand colours (same in both themes) */
+.ma {
+  padding: 18px 20px 22px;
+  background: #F7F5EE;
+  color: #12352B;
+  font-size: 11px;
+}
+
+.ma-top,
+.lc-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 800;
+  font-size: 12px;
+}
+
+.ma-top span:last-child {
+  font-weight: 500;
+  font-size: 10px;
+  color: #4D6B60;
+}
+
+.ma h4,
+.lc h4 {
+  margin: 16px 0 8px;
+  font-size: 23px;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  font-weight: 800;
+}
+
+.ma p {
+  font-size: 10.5px;
+  color: #4D6B60;
+}
+
+.ma-btn {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 7px 12px;
+  border-radius: 7px;
+  background: #12352B;
+  color: #F7F5EE;
+  font-weight: 700;
+  font-size: 10px;
+}
+
+.ma-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.ma-card {
+  padding: 9px;
+  border-radius: 9px;
+  border: 1px solid #E2DED0;
+  background: #FFFFFF;
+  font-weight: 800;
+  font-size: 10.5px;
+}
+
+.ma-card small {
+  display: block;
+  margin-top: 3px;
+  font-weight: 400;
+  font-size: 9px;
+  color: #4D6B60;
+}
+
+.ma-card .art {
+  height: 34px;
+  margin-bottom: 7px;
+  border-radius: 6px;
+  background: #EFE6CC;
+}
+
+.ma-band {
+  margin-top: 16px;
+  padding: 14px;
+  border-radius: 10px;
+  background: #12352B;
+  color: #F7F5EE;
+}
+
+.ma-band b {
+  display: block;
+  font-size: 14px;
+}
+
+.ma-band span {
+  font-size: 10px;
+  color: #C5D6CC;
+}
+
+.ma-steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.ma-steps div {
+  padding: 10px 8px;
+  border-radius: 8px;
+  border: 1px solid #E2DED0;
+  background: #FFFFFF;
+  font-size: 9.5px;
+  font-weight: 700;
+}
+
+.lc {
+  padding: 18px 20px 22px;
+  background: #F4EBDD;
+  color: #4A1E3B;
+  font-size: 11px;
+}
+
+.lc-top span:last-child {
+  font-weight: 500;
+  font-size: 10px;
+  color: #7A4A63;
+}
+
+.lc-hero {
+  display: grid;
+  grid-template-columns: 1fr 112px;
+  gap: 12px;
+  align-items: end;
+}
+
+.lc p {
+  font-size: 10.5px;
+  color: #7A4A63;
+}
+
+.lc-btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 7px 12px;
+  border-radius: 7px;
+  background: #B85A3A;
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 10px;
+}
+
+.lc-art {
+  height: 112px;
+  border-radius: 12px;
+  background-color: #4A1E3B;
+  background-image:
+    radial-gradient(circle at 30% 30%, #C79A3A 0 13%, transparent 14%),
+    radial-gradient(circle at 70% 60%, #B85A3A 0 17%, transparent 18%),
+    radial-gradient(circle at 36% 80%, #E9D3A6 0 8%, transparent 9%);
+}
+
+.lc-cats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.lc-cats div {
+  padding: 40px 9px 9px;
+  border-radius: 9px;
+  font-weight: 800;
+  font-size: 10px;
+  color: #FFFFFF;
+}
+
+.lc-cats div:nth-child(1) {
+  background: #B85A3A;
+}
+
+.lc-cats div:nth-child(2) {
+  background: #6E3558;
+}
+
+.lc-cats div:nth-child(3) {
+  background: #A07B2C;
+}
+
+.lc-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.lc-item {
+  padding: 6px;
+  border-radius: 9px;
+  background: #FFFFFF;
+  font-size: 9.5px;
+  font-weight: 700;
+}
+
+.lc-item .art {
+  height: 58px;
+  margin-bottom: 6px;
+  border-radius: 6px;
+  background: #E8D5C0;
+}
+
+.lc-item:nth-child(2) .art {
+  background: #D9B9C6;
+}
+
+.lc-item:nth-child(3) .art {
+  background: #E6D2A3;
+}
+
+.lc-item span {
+  display: block;
+  font-weight: 400;
+  color: #7A4A63;
+}
+
+/*
+  Tablet (not in the design): the two hero columns get too narrow below about 960px,
+  so the stage moves under the text, centred and no wider than it is on desktop.
+*/
+@media (max-width: 960px) {
+  .hero-in {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .h1 {
+    font-size: clamp(46px, 7.4vw, 64px);
+  }
+
+  .stage {
+    width: 100%;
+    max-width: 600px;
+    margin-inline: auto;
+  }
+}
+
+/* Phone */
+@media (max-width: 760px) {
+  .hero {
+    padding: 36px 0 60px;
+  }
+
+  .hero-in {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 30px;
+  }
+
+  .h1 {
+    margin: 18px 0 16px;
+    font-size: 46px;
+  }
+
+  .lead {
+    font-size: 16.5px;
+  }
+
+  .ctas {
+    flex-direction: column;
+    margin-top: 24px;
+  }
+
+  .ctas .btn {
+    justify-content: center;
+  }
+
+  .facts-row {
+    gap: 16px;
+    margin-top: 24px;
+  }
+
+  .stage {
+    height: 420px;
+  }
+
+  .par.pa,
+  .par.pb {
+    width: 290px;
+  }
+
+  .par.pb {
+    top: 120px;
+    right: -8px;
+  }
+
+  /* 290px rather than the design's 260px so the longest deploy line fits without being cut off. */
+  .par.pt {
+    left: 0;
+    width: 290px;
+  }
+
+  .viewport {
+    height: 170px;
+  }
+
+  /* Smaller terminal text on phones, as in the phone design. */
+  .term-body {
+    min-height: 150px;
+    font-size: 11px;
+  }
+
+  .badge-live {
+    right: 0;
+    bottom: 120px;
+  }
+}
+
+/* Small phones (360px and similar): a slightly smaller headline so no line gets clipped. */
+@media (max-width: 380px) {
+  .h1 {
+    font-size: 41px;
+  }
+}
