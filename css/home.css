@@ -1015,6 +1015,17 @@
   to { transform: scaleX(1); }
 }
 
+/* Fallback used by reveal.js: the line draws once when the steps come into view. */
+.js-reveal .track-line span {
+  animation: none;
+  transform: scaleX(0);
+  transition: transform 1.6s ease-in-out .3s;
+}
+
+.js-reveal .track-line.is-visible span {
+  transform: scaleX(1);
+}
+
 .step {
   position: relative;
 }
@@ -1190,5 +1201,27 @@
   .steps {
     grid-template-columns: minmax(0, 1fr);
     gap: 24px;
+  }
+}
+
+/* Reduced motion: the tools strip stops and shows one centred, wrapping list; the packets are hidden. */
+@media (prefers-reduced-motion: reduce) {
+  .marquee .track {
+    width: auto;
+  }
+
+  .marquee .group {
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 12px;
+    width: 100%;
+  }
+
+  .marquee .group[aria-hidden="true"] {
+    display: none;
+  }
+
+  .packet {
+    display: none;
   }
 }

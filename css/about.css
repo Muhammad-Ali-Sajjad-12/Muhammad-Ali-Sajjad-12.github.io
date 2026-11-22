@@ -189,6 +189,17 @@
   to { transform: scaleY(1); }
 }
 
+/* Fallback used by reveal.js: the line draws once when the timeline comes into view. */
+.js-reveal .tline .fill {
+  animation: none;
+  transform: scaleY(0);
+  transition: transform 1.8s ease-in-out .2s;
+}
+
+.js-reveal .tline.is-visible .fill {
+  transform: scaleY(1);
+}
+
 .t-item {
   position: relative;
   display: grid;

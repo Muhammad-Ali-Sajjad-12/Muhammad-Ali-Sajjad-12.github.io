@@ -282,3 +282,23 @@ main:focus {
     font-size: 16px;
   }
 }
+
+/*
+  Reduced motion: for visitors who asked their device for less movement.
+  Every animation and transition stops, so each element simply shows its
+  finished state (entrances in place, lines drawn, cards visible).
+  The JavaScript effects (typing, parallax, spotlight, theme circle) check
+  the same setting and switch themselves off.
+*/
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
